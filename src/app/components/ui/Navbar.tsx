@@ -89,22 +89,6 @@ export default function Navbar({ isWalletConnected, onWalletConnect }: NavbarPro
               </div>
               <span className="text-white font-bold text-xl">Stack Sats</span>
             </motion.div>
-
-            {/* Stats */}
-            <div className="hidden md:flex items-center space-x-6 text-sm">
-              <div className="text-center">
-                <div className="text-blue-400 font-semibold">4.2%</div>
-                <div className="text-gray-400 text-xs">APY</div>
-              </div>
-              <div className="text-center">
-                <div className="text-green-400 font-semibold">185%</div>
-                <div className="text-gray-400 text-xs">CDR</div>
-              </div>
-              <div className="text-center">
-                <div className="text-purple-400 font-semibold">$2.1M</div>
-                <div className="text-gray-400 text-xs">TVL</div>
-              </div>
-            </div>
           </div>
 
           {/* Right - Wallet Connection */}

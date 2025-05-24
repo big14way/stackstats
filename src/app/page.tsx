@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Navbar from './components/ui/Navbar';
+import TopStats from './components/ui/TopStats';
 import HeroSection from './components/ui/HeroSection';
 import VaultOverview from './components/vault/VaultOverview';
 import ActionModal from './components/modals/ActionModal';
@@ -30,6 +31,9 @@ export default function Home() {
       />
       
       <div className="pt-16">
+        {/* Top Stats Section */}
+        <TopStats />
+        
         {/* Hero Section with Actions Dropdown */}
         <div className="min-h-[60vh] flex items-center">
           <div className="w-full px-6">
