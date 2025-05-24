@@ -1,10 +1,6 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 
-interface TransactionPanelProps {
-  openModal: (action: 'deposit' | 'withdraw' | 'borrow' | 'repay') => void;
-}
-
 type TabType = 'deposit' | 'borrow' | 'repay';
 
 const tabs = [
@@ -31,7 +27,7 @@ const tabs = [
   }
 ];
 
-export default function TransactionPanel({ openModal }: TransactionPanelProps) {
+export default function TransactionPanel() {
   const [activeTab, setActiveTab] = useState<TabType>('deposit');
   const [amounts, setAmounts] = useState({
     deposit: '',
@@ -62,6 +58,11 @@ export default function TransactionPanel({ openModal }: TransactionPanelProps) {
 
   const handleAmountChange = (tab: TabType, value: string) => {
     setAmounts(prev => ({ ...prev, [tab]: value }));
+  };
+
+  const handleAction = (action: string) => {
+    // Placeholder for action handling
+    alert(`Action: ${action} - Use the circle next to "Stack Sats Smarter" for actual transactions`);
   };
 
   const renderTabContent = () => {
@@ -106,7 +107,7 @@ export default function TransactionPanel({ openModal }: TransactionPanelProps) {
             </div>
 
             <button
-              onClick={() => openModal('deposit')}
+              onClick={() => handleAction('deposit')}
               className={`w-full ${getColorClasses('blue')} text-white font-bold py-3 px-4 rounded-lg transition-colors`}
             >
               Deposit BTC
@@ -158,7 +159,7 @@ export default function TransactionPanel({ openModal }: TransactionPanelProps) {
             </div>
 
             <button
-              onClick={() => openModal('borrow')}
+              onClick={() => handleAction('borrow')}
               className={`w-full ${getColorClasses('purple')} text-white font-bold py-3 px-4 rounded-lg transition-colors`}
             >
               Borrow USDC
@@ -229,13 +230,13 @@ export default function TransactionPanel({ openModal }: TransactionPanelProps) {
 
             <div className="grid grid-cols-2 gap-4">
               <button
-                onClick={() => openModal('repay')}
+                onClick={() => handleAction('repay')}
                 className="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-4 rounded-lg transition-colors"
               >
                 Repay USDC
               </button>
               <button
-                onClick={() => openModal('withdraw')}
+                onClick={() => handleAction('withdraw')}
                 className={`${getColorClasses('green')} text-white font-bold py-3 px-4 rounded-lg transition-colors`}
               >
                 Withdraw BTC

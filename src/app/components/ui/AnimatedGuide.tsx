@@ -1,10 +1,6 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 
-interface AnimatedGuideProps {
-  onActionClick: (action: 'deposit' | 'withdraw' | 'borrow' | 'repay') => void;
-}
-
 const steps = [
   {
     id: 1,
@@ -44,9 +40,16 @@ const steps = [
   }
 ];
 
-export default function AnimatedGuide({ onActionClick }: AnimatedGuideProps) {
+export default function AnimatedGuide() {
   const [hoveredStep, setHoveredStep] = useState<number | null>(null);
   const [currentStep, setCurrentStep] = useState(1);
+
+  const handleStepClick = (step: typeof steps[0]) => {
+    setCurrentStep(step.id);
+    if (step.action) {
+      alert(`Use the circle next to "Stack Sats Smarter" to perform ${step.action} action`);
+    }
+  };
 
   return (
     <section className="py-20 px-4 bg-gray-900/50">
@@ -125,12 +128,7 @@ export default function AnimatedGuide({ onActionClick }: AnimatedGuideProps) {
                   whileTap={{ scale: 0.95 }}
                   onHoverStart={() => setHoveredStep(step.id)}
                   onHoverEnd={() => setHoveredStep(null)}
-                  onClick={() => {
-                    setCurrentStep(step.id);
-                    if (step.action) {
-                      onActionClick(step.action);
-                    }
-                  }}
+                  onClick={() => handleStepClick(step)}
                   className={`
                     relative overflow-hidden rounded-2xl p-8 cursor-pointer
                     bg-gradient-to-br ${step.color}

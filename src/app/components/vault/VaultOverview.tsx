@@ -33,58 +33,7 @@ const mockVaultStats: VaultStats = {
   }
 };
 
-interface VaultOverviewProps {
-  openModal: (action: 'deposit' | 'withdraw' | 'borrow' | 'repay') => void;
-}
-
-export default function VaultOverview({ openModal }: VaultOverviewProps) {
-  const actions = [
-    {
-      id: 'deposit' as const,
-      label: 'Deposit',
-      icon: '↗',
-      description: 'Add BTC',
-      gradient: 'from-blue-500/20 via-blue-600/30 to-blue-700/20',
-      border: 'border-blue-400/30',
-      glow: 'hover:shadow-blue-400/20',
-      text: 'text-blue-100',
-      hoverGradient: 'hover:from-blue-400/30 hover:via-blue-500/40 hover:to-blue-600/30'
-    },
-    {
-      id: 'withdraw' as const,
-      label: 'Withdraw',
-      icon: '↙',
-      description: 'Get BTC',
-      gradient: 'from-emerald-500/20 via-emerald-600/30 to-emerald-700/20',
-      border: 'border-emerald-400/30',
-      glow: 'hover:shadow-emerald-400/20',
-      text: 'text-emerald-100',
-      hoverGradient: 'hover:from-emerald-400/30 hover:via-emerald-500/40 hover:to-emerald-600/30'
-    },
-    {
-      id: 'borrow' as const,
-      label: 'Borrow',
-      icon: '⟲',
-      description: 'Get USDC',
-      gradient: 'from-purple-500/20 via-purple-600/30 to-purple-700/20',
-      border: 'border-purple-400/30',
-      glow: 'hover:shadow-purple-400/20',
-      text: 'text-purple-100',
-      hoverGradient: 'hover:from-purple-400/30 hover:via-purple-500/40 hover:to-purple-600/30'
-    },
-    {
-      id: 'repay' as const,
-      label: 'Repay',
-      icon: '⟳',
-      description: 'Pay USDC',
-      gradient: 'from-rose-500/20 via-rose-600/30 to-rose-700/20',
-      border: 'border-rose-400/30',
-      glow: 'hover:shadow-rose-400/20',
-      text: 'text-rose-100',
-      hoverGradient: 'hover:from-rose-400/30 hover:via-rose-500/40 hover:to-rose-600/30'
-    }
-  ];
-
+export default function VaultOverview() {
   return (
     <div className="max-w-7xl mx-auto">
       <motion.div 
@@ -198,73 +147,6 @@ export default function VaultOverview({ openModal }: VaultOverviewProps) {
             </div>
           </div>
         </motion.div>
-      </motion.div>
-
-      {/* Sleek Action Buttons */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.2 }}
-        className="mt-8 grid grid-cols-2 lg:grid-cols-4 gap-4"
-      >
-        {actions.map((action, index) => (
-          <motion.button
-            key={action.id}
-            onClick={() => openModal(action.id)}
-            whileHover={{ 
-              scale: 1.02, 
-              y: -4,
-              transition: { duration: 0.2 }
-            }}
-            whileTap={{ scale: 0.98 }}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: index * 0.1 }}
-            className={`
-              group relative overflow-hidden rounded-2xl p-6 transition-all duration-300
-              bg-gradient-to-br ${action.gradient} ${action.hoverGradient}
-              backdrop-blur-sm border ${action.border}
-              shadow-xl ${action.glow} hover:shadow-2xl
-              hover:border-opacity-50
-            `}
-          >
-            {/* Background blur effect */}
-            <div className="absolute inset-0 bg-black/10 group-hover:bg-black/5 transition-colors duration-300"></div>
-            
-            {/* Content */}
-            <div className="relative z-10 flex flex-col items-center text-center space-y-3">
-              {/* Icon */}
-              <div className={`
-                w-12 h-12 rounded-xl bg-white/10 backdrop-blur-sm
-                flex items-center justify-center text-2xl font-bold
-                ${action.text} group-hover:bg-white/15 transition-all duration-300
-                group-hover:scale-110
-              `}>
-                {action.icon}
-              </div>
-              
-              {/* Label */}
-              <div>
-                <div className={`font-bold text-lg ${action.text} group-hover:text-white transition-colors duration-300`}>
-                  {action.label}
-                </div>
-                <div className="text-xs text-gray-400 group-hover:text-gray-300 transition-colors duration-300">
-                  {action.description}
-                </div>
-              </div>
-            </div>
-
-            {/* Subtle animated border glow */}
-            <div className={`
-              absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100
-              bg-gradient-to-r ${action.gradient} blur-sm -z-10
-              transition-opacity duration-300
-            `}></div>
-
-            {/* Glass reflection effect */}
-            <div className="absolute top-0 left-0 right-0 h-1/2 bg-gradient-to-b from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-t-2xl"></div>
-          </motion.button>
-        ))}
       </motion.div>
     </div>
   );

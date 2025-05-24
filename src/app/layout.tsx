@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
-
-const inter = Inter({ subsets: ["latin"] });
+import { StarknetProvider } from "./components/providers/StarknetProvider";
 
 export const metadata: Metadata = {
   title: "Stack Sats Smarter | Vault Manager",
@@ -17,8 +15,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="dark">
-      <body className={`${inter.className} bg-gray-900 text-white`}>
-        {children}
+      <head>
+        <link rel="stylesheet" href="/fonts/inter.css" />
+      </head>
+      <body className="bg-gray-900 text-white">
+        <StarknetProvider>
+          {children}
+        </StarknetProvider>
       </body>
     </html>
   );

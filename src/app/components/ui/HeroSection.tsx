@@ -1,12 +1,13 @@
 import { motion } from 'framer-motion';
+import ActionsDropdown from './ActionsDropdown';
 
 interface HeroSectionProps {
   isWalletConnected: boolean;
   onWalletConnect: () => void;
-  compact?: boolean;
+  onActionClick: (action: 'deposit' | 'withdraw' | 'borrow' | 'repay') => void;
 }
 
-export default function HeroSection({ isWalletConnected, onWalletConnect, compact = false }: HeroSectionProps) {
+export default function HeroSection({ isWalletConnected, onWalletConnect, onActionClick }: HeroSectionProps) {
   return (
     <section className="relative flex items-center justify-center text-center px-4">
       {/* Animated background elements */}
@@ -49,14 +50,29 @@ export default function HeroSection({ isWalletConnected, onWalletConnect, compac
           </span>
         </motion.div>
 
-        <motion.h1 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.1 }}
-          className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white via-blue-100 to-purple-100 bg-clip-text text-transparent"
-        >
-          Stack Sats Smarter
-        </motion.h1>
+        {/* Title with Actions Dropdown */}
+        <div className="relative flex items-center justify-center mb-6">
+          <motion.h1 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.1 }}
+            className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-white via-blue-100 to-purple-100 bg-clip-text text-transparent"
+          >
+            Stack Sats Smarter
+          </motion.h1>
+          
+          {/* Actions Dropdown - positioned to the left */}
+          {isWalletConnected && (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5, delay: 0.8 }}
+              className="absolute -left-12 top-1/2 transform -translate-y-1/2"
+            >
+              <ActionsDropdown onActionClick={onActionClick} />
+            </motion.div>
+          )}
+        </div>
         
         <motion.p
           initial={{ opacity: 0, y: 20 }}
@@ -96,7 +112,7 @@ export default function HeroSection({ isWalletConnected, onWalletConnect, compac
           >
             <div className="inline-flex items-center space-x-2 px-4 py-2 bg-green-600/20 border border-green-500/30 rounded-full text-green-400">
               <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-              <span className="font-medium">Wallet Connected - Access Your Vault Below</span>
+              <span className="font-medium">Wallet Connected - Click the circle to explore actions</span>
             </div>
           </motion.div>
         )}
