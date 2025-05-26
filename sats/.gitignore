@@ -1,0 +1,8 @@
+target
+.snfoundry_cache/
+snfoundry_trace/
+node_modules/
+coverage/
+profile/
+account.json
+keystore.json

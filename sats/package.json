@@ -1,0 +1,26 @@
+{
+  "name": "sats",
+  "packageManager": "yarn@4.9.1",
+  "type": "module",
+  "scripts": {
+    "chain": "starknet-devnet --seed 0 --account-class cairo1",
+    "deploy": "NODE_OPTIONS='--loader ts-node/esm' ts-node scripts/deploy.ts",
+    "declare": "NODE_OPTIONS='--loader ts-node/esm' ts-node scripts/declare.ts",
+    "mainnet-deploy": "NODE_OPTIONS='--loader ts-node/esm' ts-node scripts/mainnet-deploy.ts"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "deploy": "^1.0.3",
+    "dotenv": "^16.4.5",
+    "fs": "^0.0.1-security",
+    "path": "^0.12.7",
+    "prettier": "^3.3.3",
+    "starknet": "^6.24.1",
+    "starknet-devnet": "^0.2.2",
+    "typescript": "^5.8.3"
+  },
+  "devDependencies": {
+    "@types/node": "^22.14.1"
+  }
+}
